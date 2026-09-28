@@ -1,0 +1,9 @@
+# Herramienta de digitalización de actas: solo se usa en local, nunca se
+# publica en GitHub Pages. Así, en la web pública solo se puede consultar
+# (los datos reales solo cambian cuando tú haces commit + push).
+admin.html
+assets/admin.js
+
+# Fotos originales de las actas y su índice: solo las necesita admin.html
+# en local. Pueden contener datos de contacto (teléfono/email) del acta.
+ImagenesOrigen/

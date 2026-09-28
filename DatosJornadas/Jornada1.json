@@ -1,0 +1,10 @@
+{
+  "numero": 1,
+  "fecha": "2026-09-27",
+  "partidos": [
+    { "local": "CABEIRO", "visitante": "BARRACA DE FREDDY", "campo": "O Viso", "gl": null, "gv": null },
+    { "local": "SAXAMONDE", "visitante": "BANDEIRA", "campo": "Soutomaior", "gl": 1, "gv": 3 },
+    { "local": "BARRIO SPORT", "visitante": "P. CHEGAMOS", "campo": "Arcade", "gl": 2, "gv": 2 },
+    { "local": "O FUNIL", "visitante": "CASAS SANFER", "campo": "Sta. Marina", "gl": 1, "gv": 1 }
+  ]
+}
