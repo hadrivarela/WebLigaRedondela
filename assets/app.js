@@ -150,6 +150,23 @@ function pintarClasificacion() {
     `<div class="tarjeta"><h2>Clasificación general</h2>${tablaClasificacionHTML(calcularClasificacion(JORNADAS))}</div>`;
 }
 
+// Top 3 equipos con más goles a favor marcados en todo lo que llevamos de liga.
+function topGoleadoresHTML(clasificacion) {
+  const top3 = [...clasificacion]
+    .sort((a, b) => b.gf - a.gf || a.nombre.localeCompare(b.nombre))
+    .slice(0, 3);
+  if (top3.length === 0 || top3.every(e => e.gf === 0)) {
+    return '<p class="vacio">Todavía no hay goles registrados.</p>';
+  }
+  const medallas = ['🥇', '🥈', '🥉'];
+  const filas = top3.map((e, i) => `
+    <li>
+      <span><span class="medalla">${medallas[i]}</span><strong>${e.nombre}</strong></span>
+      <span class="goles">${e.gf} ${e.gf === 1 ? 'gol' : 'goles'}</span>
+    </li>`).join('');
+  return `<ul class="top-goleadores">${filas}</ul>`;
+}
+
 // Evolución: puntos acumulados de cada equipo tras cada jornada, para poder
 // ver de un vistazo cómo ha ido subiendo o bajando cada equipo semana a semana.
 function pintarEvolucion() {
@@ -173,6 +190,10 @@ function pintarEvolucion() {
   }).join('');
 
   document.getElementById('sec-evolucion').innerHTML = `
+    <div class="tarjeta">
+      <h2>🥅 Top 3 equipos más goleadores</h2>
+      ${topGoleadoresHTML(clasificacionFinal)}
+    </div>
     <div class="tarjeta">
       <h2>Evolución de puntos por jornada</h2>
       <div style="overflow-x:auto">

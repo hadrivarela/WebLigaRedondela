@@ -78,6 +78,14 @@ tr.lider td { background: #fdf6e3; }
 tr.primeros td:first-child { border-left: 3px solid var(--oro); }
 .evolucion-tabla td.num, .evolucion-tabla th.num { min-width: 2.2rem; }
 .evolucion-tabla td.destacado { font-weight: 700; color: var(--verde-osc); }
+.top-goleadores { list-style: none; }
+.top-goleadores li {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .6rem 0; border-bottom: 1px solid var(--borde); font-size: .92rem;
+}
+.top-goleadores li:last-child { border-bottom: none; }
+.top-goleadores .medalla { font-size: 1.1rem; margin-right: .5rem; }
+.top-goleadores .goles { font-weight: 700; color: var(--verde-osc); font-variant-numeric: tabular-nums; }
 .vacio { text-align: center; color: var(--gris); padding: 1.5rem 0; font-size: .9rem; }
 footer { text-align: center; font-size: .75rem; color: var(--gris); padding: 1rem 0 2rem; }
 footer a { color: var(--verde); }
