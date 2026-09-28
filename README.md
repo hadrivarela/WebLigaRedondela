@@ -13,8 +13,9 @@ repositorio de GitHub puede actualizar la liga.
 ## Estructura del proyecto
 
 ```
-index.html                    Web pública (solo consulta): resultados, clasificación y evolución
+index.html                    Web pública (solo consulta): resultados, clasificación, evolución y campos
 config.json                   Nombre del torneo y entidad organizadora
+campos.json                   Campos de fútbol: nombre, enlace al mapa y foto opcional
 DatosJornadas/JornadaN.json   Un archivo por jornada, numerados de forma correlativa
 assets/style.css              Estilos compartidos
 assets/app.js                 Lógica de la web pública
@@ -66,6 +67,20 @@ teléfono/email de contacto).
 ```
 
 `gl`/`gv` a `null` indica que el partido todavía no se ha jugado.
+
+## Formato de `campos.json`
+
+```json
+[
+  { "nombre": "Soutomaior", "enlace": "https://maps.app.goo.gl/...", "imagen": "" }
+]
+```
+
+- `enlace`: URL de Google Maps del campo; al tocar la tarjeta se abre en una
+  pestaña nueva.
+- `imagen`: ruta opcional a una foto del campo (por ejemplo
+  `assets/campos/soutomaior.jpg`). Si se deja vacía, la tarjeta muestra un
+  icono ⚽ por defecto.
 
 ## Cómo funciona la web pública
 

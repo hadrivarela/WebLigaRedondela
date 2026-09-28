@@ -3,14 +3,16 @@
 
 let CONFIG = null;
 let JORNADAS = [];
+let CAMPOS = [];
 
 async function init() {
-  CONFIG = await cargarConfig();
-  JORNADAS = await cargarJornadas();
+  [CONFIG, JORNADAS, CAMPOS] = await Promise.all([cargarConfig(), cargarJornadas(), cargarCampos()]);
 
   document.getElementById('titulo').textContent = CONFIG.torneo || 'Liga de Redondela';
   document.getElementById('organiza').textContent = CONFIG.organiza || '';
   document.getElementById('fecha').textContent = calcularUltimaFecha();
+
+  pintarCampos();
 
   if (JORNADAS.length === 0) {
     document.querySelector('#sec-jornada .cabecera-jornada').style.display = 'none';
@@ -37,6 +39,17 @@ async function cargarConfig() {
     return await r.json();
   } catch (e) {
     return { torneo: 'Liga de Redondela', organiza: '' };
+  }
+}
+
+// Campos de fútbol: nombre, enlace al mapa y (opcionalmente) foto del campo.
+async function cargarCampos() {
+  try {
+    const r = await fetch('campos.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('sin campos.json');
+    return await r.json();
+  } catch (e) {
+    return [];
   }
 }
 
@@ -205,8 +218,33 @@ function pintarEvolucion() {
     </div>`;
 }
 
+// Tarjetas de campos de fútbol: cada una enlaza directamente a su ubicación
+// en el mapa. Si el campo no tiene foto en campos.json se muestra un icono
+// por defecto en su lugar.
+function tarjetaCampoHTML(c) {
+  const imagen = c.imagen
+    ? `<img src="${c.imagen}" alt="Campo de fútbol de ${c.nombre}" loading="lazy">`
+    : `<div class="campo-imagen-placeholder" aria-hidden="true">⚽</div>`;
+  return `<a class="tarjeta-campo" href="${c.enlace}" target="_blank" rel="noopener noreferrer">
+    <div class="campo-imagen">${imagen}</div>
+    <div class="campo-nombre">${c.nombre}</div>
+  </a>`;
+}
+
+function pintarCampos() {
+  const sec = document.getElementById('sec-campos');
+  if (CAMPOS.length === 0) {
+    sec.innerHTML = `<div class="tarjeta"><p class="vacio">Todavía no hay campos de fútbol configurados.</p></div>`;
+    return;
+  }
+  sec.innerHTML = `<div class="tarjeta">
+    <h2>Campos de fútbol</h2>
+    <div class="campos-grid">${CAMPOS.map(tarjetaCampoHTML).join('')}</div>
+  </div>`;
+}
+
 // Navegación por pestañas
-const botones = { 'btn-jornada': 'sec-jornada', 'btn-clasi': 'sec-clasi', 'btn-evolucion': 'sec-evolucion' };
+const botones = { 'btn-jornada': 'sec-jornada', 'btn-clasi': 'sec-clasi', 'btn-evolucion': 'sec-evolucion', 'btn-campos': 'sec-campos' };
 Object.entries(botones).forEach(([btn, sec]) => {
   document.getElementById(btn).addEventListener('click', () => {
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('activo'));
