@@ -72,10 +72,15 @@ teléfono/email de contacto).
 
 ```json
 [
-  { "nombre": "Soutomaior", "enlace": "https://maps.app.goo.gl/...", "imagen": "" }
+  { "nombre": "Soutomaior", "alias": [], "enlace": "https://maps.app.goo.gl/...", "imagen": "", "equipos": ["BANDEIRA", "SAXAMONDE"] }
 ]
 ```
 
+- `equipos`: equipos de la liga que juegan en ese campo (con el mismo nombre
+  que en las jornadas). Los campos con la lista vacía se muestran como
+  «adicionales y amistosos».
+- `alias`: otros nombres con los que aparece el campo en las jornadas, para
+  enlazar el campo de cada partido con su mapa.
 - `enlace`: URL de Google Maps del campo; al tocar la tarjeta se abre en una
   pestaña nueva.
 - `imagen`: ruta opcional a una foto del campo (por ejemplo

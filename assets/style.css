@@ -105,6 +105,13 @@ tr.primeros td:first-child { border-left: 3px solid var(--oro); }
   font-size: 2.4rem; background: linear-gradient(135deg, var(--verde-claro), var(--verde));
 }
 .campo-nombre { padding: .7rem .8rem; font-weight: 600; font-size: .92rem; text-align: center; }
+.campo-equipos { display: flex; flex-wrap: wrap; gap: .3rem; justify-content: center; padding: 0 .6rem .8rem; }
+.chip-equipo { background: var(--verde-claro); color: var(--verde-osc); border-radius: 10px; text-align: center; padding: .15rem .55rem; font-size: .72rem; font-weight: 600; }
+.equipo-campo { list-style: none; margin: 0; padding: 0; }
+.equipo-campo li { display: flex; justify-content: space-between; gap: .8rem; padding: .5rem 0; border-bottom: 1px solid var(--borde); font-size: .9rem; }
+.equipo-campo li:last-child { border-bottom: none; }
+.equipo-campo a { color: var(--verde-osc); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.meta a { color: inherit; text-decoration: underline dotted; }
 footer { text-align: center; font-size: .75rem; color: var(--gris); padding: 1rem 0 2rem; }
 footer a { color: var(--verde); }
 @media (max-width: 480px) {

@@ -91,6 +91,14 @@ function formatearFecha(fechaISO) {
   }
 }
 
+function campoPartidoHTML(nombre) {
+  if (!nombre) return '📍 Por confirmar';
+  const c = buscarCampo(nombre);
+  return c
+    ? `<a href="${c.enlace}" target="_blank" rel="noopener noreferrer">📍 ${c.nombre}</a>`
+    : `📍 ${nombre}`;
+}
+
 function partidoHTML(p) {
   const jugado = Number.isInteger(p.gl) && Number.isInteger(p.gv);
   const marcador = jugado ? `${p.gl} - ${p.gv}` : 'Pendiente';
@@ -98,7 +106,7 @@ function partidoHTML(p) {
     <div class="equipo izq">${p.local}</div>
     <div class="marcador${jugado ? '' : ' pendiente'}">${marcador}</div>
     <div class="equipo der">${p.visitante}</div>
-    <div class="meta">📍 ${p.campo || 'Por confirmar'}</div>
+    <div class="meta">${campoPartidoHTML(p.campo)}</div>
   </div>`;
 }
 
@@ -219,16 +227,31 @@ function pintarEvolucion() {
 }
 
 // Tarjetas de campos de fútbol: cada una enlaza directamente a su ubicación
-// en el mapa. Si el campo no tiene foto en campos.json se muestra un icono
-// por defecto en su lugar.
+// en el mapa y muestra los equipos que juegan allí. Si el campo no tiene foto
+// en campos.json se muestra un icono por defecto en su lugar.
 function tarjetaCampoHTML(c) {
   const imagen = c.imagen
     ? `<img src="${c.imagen}" alt="Campo de fútbol de ${c.nombre}" loading="lazy">`
     : `<div class="campo-imagen-placeholder" aria-hidden="true">⚽</div>`;
+  const equipos = (c.equipos || []).length
+    ? `<div class="campo-equipos">${c.equipos.map(e => `<span class="chip-equipo">${e}</span>`).join('')}</div>`
+    : '';
   return `<a class="tarjeta-campo" href="${c.enlace}" target="_blank" rel="noopener noreferrer">
     <div class="campo-imagen">${imagen}</div>
     <div class="campo-nombre">${c.nombre}</div>
+    ${equipos}
   </a>`;
+}
+
+function normalizarNombre(t) {
+  return (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase();
+}
+
+// Busca el campo de un partido por su nombre o alias (p. ej. "Sta. Marina").
+function buscarCampo(nombre) {
+  const n = normalizarNombre(nombre);
+  if (!n) return null;
+  return CAMPOS.find(c => [c.nombre, ...(c.alias || [])].some(a => normalizarNombre(a) === n)) || null;
 }
 
 function pintarCampos() {
@@ -237,10 +260,27 @@ function pintarCampos() {
     sec.innerHTML = `<div class="tarjeta"><p class="vacio">Todavía no hay campos de fútbol configurados.</p></div>`;
     return;
   }
-  sec.innerHTML = `<div class="tarjeta">
-    <h2>Campos de fútbol</h2>
-    <div class="campos-grid">${CAMPOS.map(tarjetaCampoHTML).join('')}</div>
-  </div>`;
+  const deLiga = CAMPOS.filter(c => (c.equipos || []).length > 0);
+  const adicionales = CAMPOS.filter(c => (c.equipos || []).length === 0);
+  const filasEquipos = deLiga
+    .flatMap(c => c.equipos.map(e => ({ equipo: e, campo: c })))
+    .sort((x, y) => x.equipo.localeCompare(y.equipo, 'es'))
+    .map(({ equipo, campo }) => `<li><span>${equipo}</span>
+      <a href="${campo.enlace}" target="_blank" rel="noopener noreferrer">📍 ${campo.nombre}</a></li>`)
+    .join('');
+  sec.innerHTML = `
+    <div class="tarjeta">
+      <h2>Dónde juega cada equipo</h2>
+      <ul class="equipo-campo">${filasEquipos}</ul>
+    </div>
+    <div class="tarjeta">
+      <h2>Campos de la liga</h2>
+      <div class="campos-grid">${deLiga.map(tarjetaCampoHTML).join('')}</div>
+    </div>
+    ${adicionales.length ? `<div class="tarjeta">
+      <h2>Campos adicionales y amistosos</h2>
+      <div class="campos-grid">${adicionales.map(tarjetaCampoHTML).join('')}</div>
+    </div>` : ''}`;
 }
 
 // Navegación por pestañas
