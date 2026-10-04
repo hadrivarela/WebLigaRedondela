@@ -1,0 +1,34 @@
+{
+  "numero": 2,
+  "fecha": "2026-10-04",
+  "partidos": [
+    {
+      "local": "BARRACA DE FREDDY",
+      "visitante": "O FUNIL",
+      "campo": "ARCADE",
+      "gl": 1,
+      "gv": 1
+    },
+    {
+      "local": "BANDEIRA",
+      "visitante": "CABEIRO",
+      "campo": "SOUTOMAIOR",
+      "gl": 4,
+      "gv": 1
+    },
+    {
+      "local": "P. CHEGAMOS",
+      "visitante": "SAXAMONDE",
+      "campo": "SAMPAIO",
+      "gl": 5,
+      "gv": 1
+    },
+    {
+      "local": "CASAS SANFER",
+      "visitante": "BARRIO SPORT",
+      "campo": "O VISO",
+      "gl": 4,
+      "gv": 4
+    }
+  ]
+}
