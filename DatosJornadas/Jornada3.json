@@ -1,0 +1,34 @@
+{
+  "numero": 3,
+  "fecha": "2026-10-18",
+  "partidos": [
+    {
+      "local": "BARRACA DE FREDDY",
+      "visitante": "BANDEIRA",
+      "campo": "Arcade",
+      "gl": 4,
+      "gv": 1
+    },
+    {
+      "local": "CABEIRO",
+      "visitante": "P. CHEGAMOS",
+      "campo": "O Viso",
+      "gl": 1,
+      "gv": 1
+    },
+    {
+      "local": "SAXAMONDE",
+      "visitante": "CASAS SANFER",
+      "campo": "Soutomaior",
+      "gl": 1,
+      "gv": 3
+    },
+    {
+      "local": "O FUNIL",
+      "visitante": "BARRIO SPORT",
+      "campo": "Santa Mariña",
+      "gl": 2,
+      "gv": 3
+    }
+  ]
+}
