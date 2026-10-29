@@ -1,0 +1,34 @@
+{
+  "numero": 4,
+  "fecha": "2026-10-25",
+  "partidos": [
+    {
+      "local": "BANDEIRA",
+      "visitante": "O FUNIL",
+      "campo": "Soutomaior",
+      "gl": 2,
+      "gv": 2
+    },
+    {
+      "local": "P. CHEGAMOS",
+      "visitante": "BARRACA DE FREDDY",
+      "campo": "Sampaio",
+      "gl": 1,
+      "gv": 2
+    },
+    {
+      "local": "CASAS SANFER",
+      "visitante": "CABEIRO",
+      "campo": "O Viso",
+      "gl": 2,
+      "gv": 4
+    },
+    {
+      "local": "BARRIO SPORT",
+      "visitante": "SAXAMONDE",
+      "campo": "Arcade",
+      "gl": 2,
+      "gv": 1
+    }
+  ]
+}
