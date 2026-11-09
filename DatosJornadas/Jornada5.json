@@ -1,0 +1,34 @@
+{
+  "numero": 5,
+  "fecha": "2026-11-08",
+  "partidos": [
+    {
+      "local": "BANDEIRA",
+      "visitante": "P. CHEGAMOS",
+      "campo": "Soutomaior",
+      "gl": 6,
+      "gv": 1
+    },
+    {
+      "local": "BARRACA DE FREDDY",
+      "visitante": "CASAS SANFER",
+      "campo": "Arcade",
+      "gl": 2,
+      "gv": 1
+    },
+    {
+      "local": "CABEIRO",
+      "visitante": "BARRIO SPORT",
+      "campo": "O Viso",
+      "gl": 2,
+      "gv": 3
+    },
+    {
+      "local": "O FUNIL",
+      "visitante": "SAXAMONDE",
+      "campo": "Santa Mariña",
+      "gl": 1,
+      "gv": 3
+    }
+  ]
+}
