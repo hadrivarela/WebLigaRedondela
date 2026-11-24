@@ -1,0 +1,34 @@
+{
+  "numero": 7,
+  "fecha": "2026-11-22",
+  "partidos": [
+    {
+      "local": "P. CHEGAMOS",
+      "visitante": "CASAS SANFER",
+      "campo": "Sampaio",
+      "gl": 1,
+      "gv": 3
+    },
+    {
+      "local": "BANDEIRA",
+      "visitante": "BARRIO SPORT",
+      "campo": "Soutomaior",
+      "gl": 0,
+      "gv": 1
+    },
+    {
+      "local": "BARRACA DE FREDDY",
+      "visitante": "SAXAMONDE",
+      "campo": "Arcade",
+      "gl": null,
+      "gv": null
+    },
+    {
+      "local": "CABEIRO",
+      "visitante": "O FUNIL",
+      "campo": "O Viso",
+      "gl": 0,
+      "gv": 1
+    }
+  ]
+}
